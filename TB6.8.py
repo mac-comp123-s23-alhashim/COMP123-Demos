@@ -1,5 +1,6 @@
 import turtle
 
+
 def drawSquare(t: object, sz: object) -> object:
     """
     Make turtle t draw a square of width sz
