@@ -58,9 +58,36 @@ list7[1:1] = [5.5, 6.6, 7.7]
 print(list7)
 
 
-# concatenation vs append
-list7 + [3]
+# alias
+list8 = list7
+list8[0] = 1000
+print(list8)
 print(list7)
 
-list7.append(7)
+
+# sort function
+list7.sort()
+print(list7)
+
+
+# reverse function
+list7.reverse()
+print(list7)
+
+
+# concatenation operator vs append function
+list7 + [3]         # concatenation operator
+print(list7)
+
+list7.append(7)     # append function
+print(list7)
+
+
+# modifier function: modify the passed list
+def change_fun(list):
+    for i in range(len(list)):
+        list[i] = list[i]/2
+
+
+change_fun(list7)
 print(list7)
