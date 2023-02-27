@@ -79,7 +79,7 @@ print(list7)
 list7 + [3]         # concatenation operator
 print(list7)
 
-list7.append(7)     # append function
+list7.append(3)     # append function
 print(list7)
 
 
