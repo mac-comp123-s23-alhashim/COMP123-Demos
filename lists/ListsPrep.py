@@ -38,17 +38,17 @@ list7[2] = list7[2] * 100
 print(list7)
 
 
-# update a portion of a list
+# update a portion/slice of a list
 list7[0:2] = [1.1, 2.2]
 print(list7)
 
 
-# remove a portion from a list
+# remove a portion/slice from a list
 list7[0:4] = []
 print(list7)
 
 
-# remove a portion from a list
+# remove a portion/slice from a list
 del list7[2:]
 print(list7)
 
@@ -91,3 +91,4 @@ def change_fun(list):
 
 change_fun(list7)
 print(list7)
+
