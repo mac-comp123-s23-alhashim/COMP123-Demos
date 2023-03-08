@@ -1,4 +1,4 @@
-from MySum import *
+from my_sum import *
 
 
 def test_my_sum_positives():
