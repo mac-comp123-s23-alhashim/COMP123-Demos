@@ -6,9 +6,10 @@
 # ==============================================================================
 # control+click the name of the module to open it and see how the developers
 # of the Python wrote them
-import math
-import string
-import sys
+# import math
+# import string
+# import sys
+import glob
 
 
 # Print content of the files in a given directory
