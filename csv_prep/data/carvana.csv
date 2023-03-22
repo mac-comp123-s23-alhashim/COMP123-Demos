@@ -1,0 +1,11 @@
+﻿year,make,model,miles,trim,sold_price,delivery_fee
+2016,Ford,Focus," 77,108 ",SE,"$14,590",$490
+2013,Ford,Escape," 77,113 ",SE,"$15,990",$0
+2014,Acura,MDX," 60,756 ",SH-AWD,"$26,990",$590
+2021,Kia,Forte," 31,296 ",GT-Line,"$24,990",$790
+2012,Volkswagen,GTI," 89,077 ",2.0T Hatchback,"$16,990",$590
+2016,Chevrolet,Cruze Limited," 86,336 ",1LT,"$13,990",$490
+2016,Ford,Escape," 46,003 ",SE,"$18,990","$1,490"
+2021,Tesla,Model Y," 4,538 ",Performance,"$71,990",$490
+2012,Jeep,Liberty," 88,013 ",Limited Edition,"$15,990",$0
+2015,Kia,Soul," 50,516 ",base,"$15,590",$190
