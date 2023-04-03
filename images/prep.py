@@ -1,5 +1,5 @@
 from imageTools import *
-import PIL
+# import PIL
 
 # font = pickAFont()
 # font = ImageFont.truetype("Demo_ConeriaScript.ttf", 300)
