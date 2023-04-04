@@ -1,3 +1,4 @@
+import copy
 
 class FakeFraction:
     def __init__(self, numo, deno):
@@ -35,3 +36,14 @@ if __name__ == '__main__':
 
     frac3.half()
     print(frac3)
+
+    # shallow copy
+    frac1_shallow_copy = copy.copy(frac1)
+    print(frac1 is frac1_shallow_copy)
+    print(frac1.deno is frac1_shallow_copy.deno)
+    print(frac1.numo is frac1_shallow_copy.numo)
+
+    frac1_deep_copy = copy.deepcopy(frac1)
+    print(frac1 is frac1_deep_copy)
+    print(frac1.deno is frac1_deep_copy.deno)
+    print(frac1.numo is frac1_deep_copy.numo)
