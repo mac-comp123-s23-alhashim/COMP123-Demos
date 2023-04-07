@@ -14,8 +14,9 @@ def km_changed(event):
 
 # window
 window = tk.Tk()
-window.title("Mile-KM Converter App")
-window.geometry("300x100")
+window.title("Mile-KM Converter App")   # set title
+window.geometry("300x100")              # set size
+window.resizable(0, 0)                  # disable resizing
 
 # mile frame -------------------------------------------------------------------
 mile_frame = ttk.Frame(master=window)
