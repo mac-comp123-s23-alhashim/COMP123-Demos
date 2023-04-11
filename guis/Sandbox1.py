@@ -1,3 +1,10 @@
+"""
+A sandbox to play with Tkinter based on the document written by Susan Fox
+https://docs.google.com/document/d/1S6xWzzMEF30FI0WBbxxZTI4m335kiA_wEVvuLztkNfE/preview
+
+@author: Amin G. Alhashim (aalhashi@macalester.edu)
+"""
+
 import tkinter as tk
 
 
@@ -8,7 +15,12 @@ class BasicGui:
         self.root_win1.title("Window 1")
         self.root_win1.config(bg="blue")
 
-        # label widget ---------------------------------------------------------
+        # bind the whole window to key presses
+        # binding levels: https://tkdocs.com/shipman/binding-levels.html
+        self.root_win1.bind_all('<KeyPress-Caps_Lock>',
+                                self.canvas_response)
+
+        # label ----------------------------------------------------------------
         # setting attributes using the constructor (initializer) approach
         self.label1 = \
             tk.Label(self.root_win1,
@@ -22,7 +34,7 @@ class BasicGui:
         # specify where to place the widget (layout) using the grid approach
         self.label1.grid(row=0, column=0)
 
-        # label widget ---------------------------------------------------------
+        # label ----------------------------------------------------------------
         # setting attributes using the dictionary approach
         label2 = tk.Label(self.root_win1)
         label2['text'] = "COMP 123"
@@ -35,7 +47,7 @@ class BasicGui:
         # specify where to place the widget (layout) using the grid approach
         label2.grid(row=1, column=0)
 
-        # button widget --------------------------------------------------------
+        # button ---------------------------------------------------------------
         # setting attributes using the config method
         button1 = tk.Button(self.root_win1)
         button1.config(
@@ -44,7 +56,7 @@ class BasicGui:
         # specify where to place the widget (layout) using the grid approach
         button1.grid(row=1, column=1)
 
-        # button widget --------------------------------------------------------
+        # button ---------------------------------------------------------------
         # setting attributes using the constructor (initializer) approach
         quit_button = \
             tk.Button(self.root_win1,
@@ -72,16 +84,33 @@ class BasicGui:
         # specify where to place the widget (layout) using the grid approach
         shrink_button.grid(row=4, column=1)
 
+        # Frame ----------------------------------------------------------------
+        # setting attributes using the dictionary approach
+        left_frame = tk.Frame(self.root_win1)
+        left_frame['pady'] = 20
+        left_frame['width'] = 100
+        # specify where to place the widget (layout) using the grid approach
+        left_frame.grid(row=5, column=0)
+
+        # Label ----------------------------------------------------------------
+        # setting attributes using the dictionary approach
+        instruction_label = tk.Label(left_frame)
+        instruction_label['text'] = 'type something and hit Enter or Tab to ' \
+                                    'reverse'
+        # specify where to place the widget (layout) using the grid approach
+        instruction_label.grid(row=0, column=0)
+
         # Entry ----------------------------------------------------------------
         # setting attributes using the constructor (initializer) approach
         self.name_entry = \
-            tk.Entry(self.root_win1,
+            tk.Entry(left_frame,
                      justify=tk.CENTER,
                      width=30)
-        # specify where to place the widget (layout) using the grid approach
+        # binding callbacks to key presses
         self.name_entry.bind('<Return>', self.name_entry_response)
         self.name_entry.bind('<Tab>', self.name_entry_response)
-        self.name_entry.grid(row=5, column=0)
+        # specify where to place the widget (layout) using the grid approach
+        self.name_entry.grid(row=1, column=0)
 
         # button ---------------------------------------------------------------
         # setting attributes using the config method
@@ -89,13 +118,16 @@ class BasicGui:
         count_button.config(
             text="find length of input",
             width=30,
-            command=self.copy_button_response)
+            command=self.find_input_length)
         # specify where to place the widget (layout) using the grid approach
         count_button.grid(row=5, column=1)
 
-        # self.root_win2 = tk.Tk()
-        # self.root_win2.title("Window 2")
-        # self.root_win2.config(bg="yellow")
+
+
+        # another window
+        self.root_win2 = tk.Tk()
+        self.root_win2.title("Window 2")
+        self.root_win2.config(bg="yellow")
 
     def run(self):
         self.root_win1.mainloop()
@@ -103,6 +135,9 @@ class BasicGui:
 
     def button1_response(self):
         print("Button was pressed")
+
+    def canvas_response(self, event):
+        print(event)
 
     def quit_button_response(self):
         self.root_win1.destroy()
@@ -117,7 +152,7 @@ class BasicGui:
         self.label1['text'] = current_val
         self.label1['font'] = 'Arial ' + str(current_val) + ' bold'
 
-    def copy_button_response(self):
+    def find_input_length(self):
         self.label1['text'] = len(self.name_entry.get())
         self.name_entry.delete(0, tk.END)
 
@@ -135,4 +170,4 @@ class BasicGui:
 
 if __name__ == '__main__':
     myBasicGui = BasicGui()  # create object of BasicGui class
-    myBasicGui.run()  # call the run method of the class
+    myBasicGui.run()         # call the run method of the class
