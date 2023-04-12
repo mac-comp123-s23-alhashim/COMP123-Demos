@@ -1,8 +1,13 @@
 import tkinter as tk
 
-def mouse_inside_canvas_response(event):
+def motion_response(event):
     msg = "({}, {})".format(event.x, event.y)
     mouse_position_tracker['text'] = msg
+
+    if len(mouse_down_position) == 0:
+        return
+
+    draw_circle(event)
 
 def mouse_leave_canvas_response(event):
     mouse_position_tracker['text'] = 'mouse outside canvas'
@@ -22,21 +27,36 @@ def draw_horizontal_line(event):
                        end_x, end_y)
 
 
-def draw_circel(event):
+def button_release_response(event):
+    global mouse_down_position
+    if mouse_down_position != (event.x, event.y):
+        mouse_down_position = ()
+        return
+
+    draw_circle(event)
+    mouse_down_position = ()
+
+
+def draw_circle(event):
     start_x = event.x - 5
     start_y = event.y - 5
     end_x = event.x + 5
     end_y = event.y + 5
 
-    shape_ids = canvas.find_overlapping(start_x, start_y, end_x, end_y)
-    if len(shape_ids) != 0:
-        for shape_id in shape_ids:
-            canvas.delete(shape_id)
-        print(shape_ids)
-        return
+    # shape_ids = canvas.find_overlapping(start_x, start_y, end_x, end_y)
+    # if len(shape_ids) != 0:
+    #     for shape_id in shape_ids:
+    #         canvas.delete(shape_id)
+    #     print(shape_ids)
+    #     return
 
     canvas.create_oval(start_x, start_y,
                        end_x, end_y)
+
+
+def mouse_down(event):
+    global mouse_down_position
+    mouse_down_position = (event.x, event.y)
 
 
 def draw_vertical_line(event):
@@ -60,6 +80,9 @@ def type_key(event):
     canvas.create_text(event.x, event.y-21, text=event.keysym)
 
 
+mouse_down_position = ()
+
+
 # window (Tk object)
 window = tk.Tk()
 
@@ -77,10 +100,11 @@ canvas['bg'] = "red"
 canvas['height'] = 500
 canvas['width'] = 500
 # bind callbacks to some keys
-canvas.bind("<Motion>", mouse_inside_canvas_response)
+canvas.bind("<Motion>", motion_response)
 canvas.bind("<Leave>", mouse_leave_canvas_response)
 canvas.bind("<Button-3>", change_bg_color)
-canvas.bind('<Button-1>', draw_circel)
+canvas.bind('<ButtonRelease-1>', button_release_response)
+canvas.bind('<Button-1>', mouse_down)
 canvas.bind('<Control-Button-1>', draw_vertical_line)
 canvas.bind('<Shift-Button-1>', draw_horizontal_line)
 canvas.bind('<Shift-Control-Button-1>', draw_vertical_and_horizontal_lines)
